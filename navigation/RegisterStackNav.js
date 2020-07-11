@@ -3,19 +3,20 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "../screens/Login";
 import SignUp from "../screens/SignUp";
 import ForgetPass from "../screens/ForgetPass";
+import styles from "../constant/Style"
 
 const Stack = createStackNavigator();
 
 const RegisterStackNav = ({ navigation }) => {
   return (
-    <Stack.Navigator headerMode="screen" initialRouteName="Register">
+    <Stack.Navigator headerMode="screen" initialRouteName="Login">
       <Stack.Screen
         options={getOption("Welcome")}
         name="Login"
         component={Login}
       />
       <Stack.Screen
-        options={getOption("SignUp")}
+        options={getOption("Join")}
         name="SignUp"
         component={SignUp}
       />
@@ -32,9 +33,10 @@ const getOption = (name) => {
   return {
     title: name,
     headerStyle: {
-      backgroundColor: "tomato",
+      backgroundColor: styles.baseColor,
     },
-    animationEnabled: false,
+    animationEnabled: true,
+    transition: "fadeIn",
     headerTitleAlign: "center",
     headerTintColor: "#fff",
     headerTitleStyle: {
