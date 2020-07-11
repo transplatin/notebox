@@ -8,7 +8,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 const BottomTab = createBottomTabNavigator();
 
-const BottomTabNav = () => {
+const BottomTabNav = ({navigation}) => {
   return (
     <BottomTab.Navigator
       screenOptions={({ route }) => setOptions(route)}
@@ -32,9 +32,7 @@ const setOptions = (route) => ({
 
     switch (route.name) {
       case "Home":
-        iconName = focused
-          ? "home"
-          : "home";
+        iconName = focused ? "home" : "home";
         break;
       case "Books":
         iconName = focused
@@ -42,14 +40,10 @@ const setOptions = (route) => ({
           : "book-open-page-variant";
         break;
       case "Forum":
-        iconName = focused
-          ? "newspaper"
-          : "newspaper";
+        iconName = focused ? "newspaper" : "newspaper";
         break;
       case "Profile":
-        iconName = focused
-          ? "account"
-          : "account";
+        iconName = focused ? "account" : "account";
         break;
     }
 
