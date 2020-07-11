@@ -11,12 +11,28 @@ export default function App() {
   return (
     <NavigationContainer style={styles.container}>
       <Stack.Navigator initialRouteName="Main">
-        <Stack.Screen name="Main" component={RegisterStackNav} />
-        <Stack.Screen name="Home" component={BottomTabNav} />
+        <Stack.Screen options={{headerShown: false}} name="Main" component={RegisterStackNav} />
+        <Stack.Screen options={getOption("Home")}  name="Home" component={BottomTabNav} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+const getOption = (name) => {
+  return {
+    title: name,
+    headerStyle: {
+      backgroundColor: "teal",
+    },
+    animationEnabled: false,
+    headerTitleAlign: "center",
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      fontSize: 25,
+      color: "white"
+    }
+  };
+};
 
 const styles = StyleSheet.create({
   container: {

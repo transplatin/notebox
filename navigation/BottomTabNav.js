@@ -8,12 +8,12 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 const BottomTab = createBottomTabNavigator();
 
-const BottomTabNav = ({navigation}) => {
+const BottomTabNav = ({ navigation }) => {
   return (
     <BottomTab.Navigator
       screenOptions={({ route }) => setOptions(route)}
       tabBarOptions={{
-        activeTintColor: "tomato",
+        activeTintColor: "teal",
         inactiveTintColor: "gray",
       }}
       initialRouteName="Home"
