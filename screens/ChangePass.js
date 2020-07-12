@@ -1,27 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { Text, Icon, Input, Button } from "galio-framework";
 import styles from "../constant/Style";
 
 const SignUp = ({ navigation }) => {
+  const [type, setType] = useState("Not Sent");
+
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>
       <View style={styles.header}>
-        <Text h1 color="white">
-          Register
+        <Text h4 color="white">
+          Change Password
         </Text>
       </View>
       <View style={styles.footer}>
         <Input
           style={[styles.input, { marginTop: 80 }]}
-          placeholder="Username"
+          placeholder="Create password"
         />
-        <Input style={styles.input} placeholder="Email" />
-        <Input style={styles.input} placeholder="Phone" />
-        <Input secureTextEntry style={styles.input} placeholder="Password" />
+        <Input
+          style={[styles.input]}
+          placeholder="Confirm Password"
+        />
         <Button color={styles.baseColor} style={styles.input}>
-          Register
+          Change Password
         </Button>
+
         <View
           style={{
             flexDirection: "row",

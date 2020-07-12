@@ -3,7 +3,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "../screens/Login";
 import SignUp from "../screens/SignUp";
 import ForgetPass from "../screens/ForgetPass";
-import styles from "../constant/Style"
+import ChangePass from "../screens/ChangePass";
+import styles from "../constant/Style";
 
 const Stack = createStackNavigator();
 
@@ -21,9 +22,14 @@ const RegisterStackNav = ({ navigation }) => {
         component={SignUp}
       />
       <Stack.Screen
-        options={getOption("Forget")}
-        name="Forget"
+        options={getOption("Recover")}
+        name="ForgetPass"
         component={ForgetPass}
+      />
+      <Stack.Screen
+        options={getOption("Create Password")}
+        name="ChangePass"
+        component={ChangePass}
       />
     </Stack.Navigator>
   );
@@ -41,7 +47,7 @@ const getOption = (name) => {
     headerTintColor: "#fff",
     headerTitleStyle: {
       fontSize: 25,
-      color: "white"
+      color: "white",
     },
   };
 };
