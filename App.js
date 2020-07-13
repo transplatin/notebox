@@ -4,17 +4,17 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNav from "./navigation/BottomTabNav";
 import RegisterStackNav from "./navigation/RegisterStackNav";
-
+import style from "./constant/Style";
 const Stack = createStackNavigator();
 
 export default function App() {
 
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="Main">
+      <Stack.Navigator initialRouteName="Auth">
         <Stack.Screen
           options={{ headerShown: false }}
-          name="Main"
+          name="Auth"
           component={RegisterStackNav}
         />
         <Stack.Screen
@@ -31,7 +31,7 @@ const getOption = (name) => {
   return {
     title: name,
     headerStyle: {
-      backgroundColor: "teal",
+      backgroundColor: style.baseColor,
     },
     animationEnabled: false,
     headerTitleAlign: "center",

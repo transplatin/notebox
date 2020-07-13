@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, TouchableWithoutFeedback } from "react-native";
 import { Text, Input, Button } from "galio-framework";
 import styles from "../constant/Style";
 
 const Login = ({ navigation }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  console.log(username + password);
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>
       <View style={styles.header}>
@@ -13,11 +16,19 @@ const Login = ({ navigation }) => {
       </View>
       <View style={styles.footer}>
         <Input
+          value={username}
+          onChangeText={e=>setUsername(e)}
           style={[styles.input, { marginTop: 80 }]}
           placeholder="Email, Phone or Username"
         />
-        <Input secureTextEntry style={styles.input} placeholder="Password" />
-        <Button color={styles.baseColor} style={styles.input}>
+        <Input
+          value={password}
+          onChangeText={e=>setPassword(e)}
+          style={styles.input}
+          placeholder="Password"
+          secureTextEntry
+        />
+        <Button onPress={()=>onLoginClick(username,password)} color={styles.baseColor} style={styles.input}>
           Login
         </Button>
         <View
@@ -44,7 +55,7 @@ const Login = ({ navigation }) => {
                 onPress={() => navigation.push("ForgetPass")}
               >
                 <Text p color={styles.baseColor}>
-                 Forget Password ?
+                  Forget Password ?
                 </Text>
               </TouchableWithoutFeedback>
             </View>
@@ -54,5 +65,11 @@ const Login = ({ navigation }) => {
     </View>
   );
 };
+
+const onLoginClick=(username,password)=>{
+  /*
+  Do something on login click
+  */
+}
 
 export default Login;

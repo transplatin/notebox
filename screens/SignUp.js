@@ -1,9 +1,13 @@
-import React from "react";
-import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
-import { Text, Icon, Input, Button } from "galio-framework";
+import React, { useState } from "react";
+import { View, TouchableWithoutFeedback } from "react-native";
+import { Text, Input, Button } from "galio-framework";
 import styles from "../constant/Style";
 
 const SignUp = ({ navigation }) => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>
       <View style={styles.header}>
@@ -13,13 +17,35 @@ const SignUp = ({ navigation }) => {
       </View>
       <View style={styles.footer}>
         <Input
+          value={username}
+          onChangeText={(e) => setUsername(e)}
           style={[styles.input, { marginTop: 80 }]}
           placeholder="Username"
         />
-        <Input style={styles.input} placeholder="Email" />
-        <Input style={styles.input} placeholder="Phone" />
-        <Input secureTextEntry style={styles.input} placeholder="Password" />
-        <Button color={styles.baseColor} style={styles.input}>
+        <Input
+          value={email}
+          onChangeText={(e) => setEmail(e)}
+          style={styles.input}
+          placeholder="Email"
+        />
+        <Input
+          value={phone}
+          onChangeText={(e) => setPhone(e)}
+          style={styles.input}
+          placeholder="Phone"
+        />
+        <Input
+          value={password}
+          onChangeText={(e) => setPassword(e)}
+          style={styles.input}
+          placeholder="Password"
+          secureTextEntry
+        />
+        <Button
+          onPress={() => onRegisterClick(username, email, phone, password)}
+          color={styles.baseColor}
+          style={styles.input}
+        >
           Register
         </Button>
         <View
@@ -40,6 +66,10 @@ const SignUp = ({ navigation }) => {
       </View>
     </View>
   );
+};
+
+const onRegisterClick = (username, email, phone, password) => {
+  /*Do something on click*/
 };
 
 export default SignUp;

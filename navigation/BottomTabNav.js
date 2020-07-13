@@ -5,6 +5,7 @@ import ProfileScreen from "../screens/ProfileScreen";
 import ForumScreen from "../screens/ForumScreen";
 import BookScreen from "../screens/BookScreen";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import styles from "../constant/Style"
 
 const BottomTab = createBottomTabNavigator();
 
@@ -13,14 +14,14 @@ const BottomTabNav = ({ navigation }) => {
     <BottomTab.Navigator
       screenOptions={({ route }) => setOptions(route)}
       tabBarOptions={{
-        activeTintColor: "teal",
+        activeTintColor: styles.baseColor,
         inactiveTintColor: "gray",
       }}
       initialRouteName="Home"
     >
       <BottomTab.Screen name="Home" icon="home" component={HomeScreen} />
       <BottomTab.Screen name="Books" component={BookScreen} />
-      <BottomTab.Screen name="Forum" component={ForumScreen} />
+      <BottomTab.Screen name="Notes" component={ForumScreen} />
       <BottomTab.Screen name="Profile" component={ProfileScreen} />
     </BottomTab.Navigator>
   );
@@ -39,8 +40,8 @@ const setOptions = (route) => ({
           ? "book-open-page-variant"
           : "book-open-page-variant";
         break;
-      case "Forum":
-        iconName = focused ? "newspaper" : "newspaper";
+      case "Notes":
+        iconName = focused ? "note" : "note";
         break;
       case "Profile":
         iconName = focused ? "account" : "account";

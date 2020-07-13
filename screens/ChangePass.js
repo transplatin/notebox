@@ -3,9 +3,9 @@ import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import { Text, Icon, Input, Button } from "galio-framework";
 import styles from "../constant/Style";
 
-const SignUp = ({ navigation }) => {
-  const [type, setType] = useState("Not Sent");
-
+const ChangePass = ({ navigation }) => {
+  const [pwd1, setPwd1] = useState("");
+  const [pwd2, setPwd2] = useState("");
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>
       <View style={styles.header}>
@@ -15,35 +15,29 @@ const SignUp = ({ navigation }) => {
       </View>
       <View style={styles.footer}>
         <Input
+          value={pwd1}
+          onChangeText={(e)=>setPwd1(e)}
           style={[styles.input, { marginTop: 80 }]}
-          placeholder="Create password"
+          placeholder="Create new password"
+          secureTextEntry
         />
         <Input
+          value={pwd2}
+          onChangeText={(e)=>setPwd2(e)}
           style={[styles.input]}
           placeholder="Confirm Password"
+          secureTextEntry
         />
-        <Button color={styles.baseColor} style={styles.input}>
+        <Button onPress={()=>onClickChange(pwd1,pwd2)} color={styles.baseColor} style={styles.input}>
           Change Password
         </Button>
-
-        <View
-          style={{
-            flexDirection: "row",
-            padding: 10,
-          }}
-        >
-          <Text p muted>
-            Already have an account ?{" "}
-          </Text>
-          <TouchableWithoutFeedback onPress={() => navigation.pop()}>
-            <Text color={styles.baseColor} p>
-              Login
-            </Text>
-          </TouchableWithoutFeedback>
-        </View>
       </View>
     </View>
   );
 };
 
-export default SignUp;
+onClickChange=(pwd1,pwd2)=>{
+  /* Do Something */
+}
+
+export default ChangePass;

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableWithoutFeedback } from "react-native";
-import { Text, Icon, Input, Button } from "galio-framework";
+import { View,  TouchableWithoutFeedback } from "react-native";
+import { Text, Input, Button } from "galio-framework";
 import styles from "../constant/Style";
 
 const SignUp = ({ navigation }) => {
   const [type, setType] = useState("Not Sent");
-//set type to Sent OTP once otp is sent
+  const [otp, setOTP] = useState("");
+  const [email, setEmail] = useState("");
+  //set type to Sent OTP once otp is sent
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>
       <View style={styles.header}>
@@ -16,21 +18,25 @@ const SignUp = ({ navigation }) => {
       <View style={styles.footer}>
         {type === "Sent OTP" ? (
           <Input
+            value={otp}
+            onChangeText={(e)=>setOTP(e)}
             style={[styles.input, { marginTop: 80 }]}
             placeholder="Enter 6 Digit OTP"
           />
         ) : (
           <Input
+            value={email}
+            onChangeText={(e)=>setEmail(e)}
             style={[styles.input, { marginTop: 80 }]}
             placeholder="Phone or Email"
           />
         )}
         {type === "Sent OTP" ? (
-          <Button color={styles.baseColor} style={styles.input}>
+          <Button onPress={()=>onVerifyClick(otp)} color={styles.baseColor} style={styles.input}>
             Verify
           </Button>
         ) : (
-          <Button color={styles.baseColor} style={styles.input}>
+          <Button onPress={()=>onSendOTPClick(email)} color={styles.baseColor} style={styles.input}>
             Send OTP
           </Button>
         )}
@@ -55,4 +61,10 @@ const SignUp = ({ navigation }) => {
   );
 };
 
+const onVerifyClick=(otp)=>{
+  /* Do something */
+}
+const onSendOTPClick=(email)=>{
+  /* Do something */
+}
 export default SignUp;
