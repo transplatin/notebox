@@ -10,6 +10,9 @@ const SignUp = ({ navigation }) => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [SignUp, result, error] = useSignUp();
+  if(result.length>0){
+    navigation.replace("Home");
+  }
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>
       <View style={styles.header}>
@@ -34,7 +37,9 @@ const SignUp = ({ navigation }) => {
           value={phone}
           onChangeText={(e) => setPhone(e)}
           style={styles.input}
+          maxLength={10}
           placeholder="Phone"
+          keyboardType="phone-pad"
         />
         <Input
           value={password}
@@ -45,8 +50,9 @@ const SignUp = ({ navigation }) => {
         />
         <Button
           onPress={() => {
-            SignUp(username, email, phone, password);
-            navigation.replace("Home");
+            if (verifyDetails(username, email, phone, password)) {
+              SignUp(username, email, phone, password);
+            }
           }}
           color={styles.baseColor}
           style={styles.input}
@@ -71,6 +77,26 @@ const SignUp = ({ navigation }) => {
       </View>
     </View>
   );
+};
+
+const verifyDetails = (username, email, phone, password) => {
+  var usernameRegex = /^[a-zA-Z0-9]+$/;
+  var emailRegex = /\S+@\S+\.\S+/;
+  var phoneRegex=/^[0-9]{10}$/;
+  if (!(username.match(usernameRegex) && username !== "")) {
+    alert("Please choose a valid username");
+    return false;
+  } else if (!(email.match(emailRegex) && email !== "")) {
+    alert("Please choose a valid email");
+    return false;
+  } else if (!(phone.match(phoneRegex) && phone != "" )) {
+    alert("Please choose a valid phone number");
+    return false;
+  } else if (!(password != "")) {
+    alert("Please choose a password");
+    return false;
+  }
+  return true;
 };
 
 export default SignUp;

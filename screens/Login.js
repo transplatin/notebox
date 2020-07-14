@@ -8,7 +8,7 @@ const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [Login, result, error] = LoginPost();
-  if(result.length>0){
+  if (result.length > 0) {
     navigation.replace("Home");
   }
   return (

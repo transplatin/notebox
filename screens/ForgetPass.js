@@ -11,7 +11,9 @@ const SignUp = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [SendOTP, OTPResult, OTPerror] = useSendOTP();
   const [VerifyOTP, VerifyResult, Verifyerror] = useVerifyOTP();
-  console.log(VerifyResult);
+  if (VerifyResult.length > 0) {
+    navigation.replace("ChangePass");
+  }
   //set type to Sent OTP once otp is sent
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>
@@ -27,6 +29,7 @@ const SignUp = ({ navigation }) => {
             onChangeText={(e) => setOTP(e)}
             style={[styles.input, { marginTop: 80 }]}
             placeholder="Enter 6 Digit OTP"
+            keyboardType="number-pad"
           />
         ) : (
           <Input
@@ -39,8 +42,9 @@ const SignUp = ({ navigation }) => {
         {type === "Sent OTP" ? (
           <Button
             onPress={() => {
-              VerifyOTP(otp);
-              navigation.replace("ChangePass");
+              if (validateOTP(otp)) {
+                VerifyOTP(otp);
+              }
             }}
             color={styles.baseColor}
             style={styles.input}
@@ -50,8 +54,10 @@ const SignUp = ({ navigation }) => {
         ) : (
           <Button
             onPress={() => {
-              SendOTP(email);
-              setType("Sent OTP");
+              if (validateEmail(email)) {
+                SendOTP(email);
+                setType("Sent OTP");
+              }
             }}
             color={styles.baseColor}
             style={styles.input}
@@ -78,6 +84,24 @@ const SignUp = ({ navigation }) => {
       </View>
     </View>
   );
+};
+
+const validateEmail = (email) => {
+  var emailRegex = /\S+@\S+\.\S+/;
+  var phoneRegex = /^[0-9]{10}$/;
+  if (!(email.match(emailRegex) || email.match(phoneRegex))) {
+    alert("Please choose a valid Email or Phone");
+    return false;
+  }
+  return true;
+};
+const validateOTP = (otp) => {
+  var otpRegex = /^[0-9]{6}$/;
+  if (!otp.match(otpRegex)) {
+    alert("Please choose a valid Email or Phone");
+    return false;
+  }
+  return true;
 };
 
 export default SignUp;
