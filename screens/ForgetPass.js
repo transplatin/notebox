@@ -40,18 +40,31 @@ const SignUp = ({ navigation }) => {
           />
         )}
         {type === "Sent OTP" ? (
-          <Button
-            onPress={() => {
-              if (validateOTP(otp)) {
-                VerifyOTP(otp);
-              }
-            }}
-            color={styles.baseColor}
-            style={styles.input}
-          >
-            Verify
-          </Button>
+          <>
+            {Verifyerror ? (
+              <Text p color="red">
+                {Verifyerror}
+              </Text>
+            ) : null}
+            <Button
+              onPress={() => {
+                if (validateOTP(otp)) {
+                  VerifyOTP(otp);
+                }
+              }}
+              color={styles.baseColor}
+              style={styles.input}
+            >
+              Verify
+            </Button>{" "}
+          </>
         ) : (
+          <>
+          {OTPerror ? (
+          <Text  color="red">
+            {OTPerror}
+          </Text>
+        ) : null}
           <Button
             onPress={() => {
               if (validateEmail(email)) {
@@ -64,6 +77,7 @@ const SignUp = ({ navigation }) => {
           >
             Send OTP
           </Button>
+          </>
         )}
 
         <View

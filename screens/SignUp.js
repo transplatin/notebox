@@ -10,7 +10,7 @@ const SignUp = ({ navigation }) => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [SignUp, result, error] = useSignUp();
-  if(result.length>0){
+  if (result.length > 0) {
     navigation.replace("Home");
   }
   return (
@@ -48,6 +48,11 @@ const SignUp = ({ navigation }) => {
           placeholder="Password"
           secureTextEntry
         />
+        {error ? (
+          <Text p color="red">
+            {error}
+          </Text>
+        ) : null}
         <Button
           onPress={() => {
             if (verifyDetails(username, email, phone, password)) {
@@ -82,14 +87,14 @@ const SignUp = ({ navigation }) => {
 const verifyDetails = (username, email, phone, password) => {
   var usernameRegex = /^[a-zA-Z0-9]+$/;
   var emailRegex = /\S+@\S+\.\S+/;
-  var phoneRegex=/^[0-9]{10}$/;
+  var phoneRegex = /^[0-9]{10}$/;
   if (!(username.match(usernameRegex) && username !== "")) {
     alert("Please choose a valid username");
     return false;
   } else if (!(email.match(emailRegex) && email !== "")) {
     alert("Please choose a valid email");
     return false;
-  } else if (!(phone.match(phoneRegex) && phone != "" )) {
+  } else if (!(phone.match(phoneRegex) && phone != "")) {
     alert("Please choose a valid phone number");
     return false;
   } else if (!(password != "")) {

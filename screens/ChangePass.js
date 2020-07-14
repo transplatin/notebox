@@ -8,7 +8,7 @@ const ChangePass = ({ navigation }) => {
   const [pwd1, setPwd1] = useState("");
   const [pwd2, setPwd2] = useState("");
   const [ChangePass, result, error] = useChangePass();
-  if(result.length>0){
+  if (result.length > 0) {
     navigation.replace("Home");
   }
   return (
@@ -33,11 +33,15 @@ const ChangePass = ({ navigation }) => {
           placeholder="Confirm Password"
           secureTextEntry
         />
+        {error ? (
+          <Text p color="red">
+            {error}
+          </Text>
+        ) : null}
         <Button
           onPress={() => {
-            if(pwdValidate(pwd1,pwd2)){
+            if (pwdValidate(pwd1, pwd2)) {
               ChangePass(pwd1, pwd2);
-            
             }
           }}
           color={styles.baseColor}
@@ -50,12 +54,11 @@ const ChangePass = ({ navigation }) => {
   );
 };
 
-const pwdValidate=(pwd1,pwd2)=>{
-  if(pwd1!==pwd2){
+const pwdValidate = (pwd1, pwd2) => {
+  if (pwd1 !== pwd2) {
     alert("Password doesn't match");
     return false;
   }
-return true
-
-}
+  return true;
+};
 export default ChangePass;

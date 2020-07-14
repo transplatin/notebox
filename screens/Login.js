@@ -40,7 +40,11 @@ const Login = ({ navigation }) => {
         ) : null}
 
         <Button
-          onPress={() => Login(username, password)}
+          onPress={() => {
+            if (verifyDetails(username, password)) {
+              Login(username, password);
+            }
+          }}
           color={styles.baseColor}
           style={styles.input}
         >
@@ -81,4 +85,14 @@ const Login = ({ navigation }) => {
   );
 };
 
+const verifyDetails = (username, password) => {
+  if (username == "") {
+    alert("Username cannot be empty !");
+    return false;
+  } else if (password == "") {
+    alert("Password cannot be empty ");
+    return false;
+  }
+  return true;
+};
 export default Login;
