@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { View, TouchableWithoutFeedback } from "react-native";
 import { Text, Input, Button } from "galio-framework";
 import styles from "../constant/Style";
+import useSignUp from "../hooks/useSignUp";
 
 const SignUp = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [SignUp, result, error] = useSignUp();
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>
       <View style={styles.header}>
@@ -42,7 +44,10 @@ const SignUp = ({ navigation }) => {
           secureTextEntry
         />
         <Button
-          onPress={() => onRegisterClick(username, email, phone, password)}
+          onPress={() => {
+            SignUp(username, email, phone, password);
+            navigation.replace("Home");
+          }}
           color={styles.baseColor}
           style={styles.input}
         >
@@ -66,10 +71,6 @@ const SignUp = ({ navigation }) => {
       </View>
     </View>
   );
-};
-
-const onRegisterClick = (username, email, phone, password) => {
-  /*Do something on click*/
 };
 
 export default SignUp;
