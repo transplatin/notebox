@@ -4,6 +4,9 @@
 #eccb98
 #e1aa57
 */
+import {Dimensions} from "react-native"
+const _Height = Math.floor(Dimensions.get("window").height);
+const _Width = Math.floor(Dimensions.get("window").width);
 let baseColorTheme = "#ffa41b";
 export default {
   //Theme
@@ -40,4 +43,30 @@ export default {
   input: {
     width: "80%",
   },
+  //Section
+  headingText: {
+    fontSize: 100,
+  },
+  head: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginHorizontal: 10,
+    marginVertical: 10,
+    padding: 10,
+    backgroundColor: "#ffffff",
+  },
+  //book
+  bookContainer: {
+    width: 125,
+    height: 160,
+    backgroundColor: "#f5f5f5",
+  },
+  bookImage:{
+    flex: 1,
+    height: _Height / 3.6,
+    width: _Width/2.5,
+    resizeMode: "contain",
+    backgroundColor: "#f5f5f5",
+  },
+  
 };

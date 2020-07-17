@@ -11,7 +11,7 @@ const SignUp = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [SignUp, result, error] = useSignUp();
   if (result.length > 0) {
-    navigation.replace("Home");
+    navigation.replace("Main");
   }
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>

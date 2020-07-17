@@ -1,8 +1,15 @@
-import React from 'react'
-import {Text } from "react-native";
+import React from "react";
+import Section from "../components/Section";
+import { ScrollView } from "react-native";
 
-const HomeScreen=()=>{
-    return <Text>This is homescreen</Text>
-}
+const HomeScreen = () => {
+  return (
+    <ScrollView>
+      <Section title="Popular" />
+      <Section title="Saved Books" />
+      <Section title="Saved Notes" />
+    </ScrollView>
+  );
+};
 
 export default HomeScreen;

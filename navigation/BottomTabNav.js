@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeScreen from "../screens/HomeScreen";
+import HomeStackNav from "./HomeStackNav";
 import ProfileScreen from "../screens/ProfileScreen";
 import ForumScreen from "../screens/ForumScreen";
 import BookScreen from "../screens/BookScreen";
@@ -19,7 +19,7 @@ const BottomTabNav = ({ navigation }) => {
       }}
       initialRouteName="Home"
     >
-      <BottomTab.Screen name="Home" icon="home" component={HomeScreen} />
+      <BottomTab.Screen name="Home" icon="home" component={HomeStackNav} />
       <BottomTab.Screen name="Books" component={BookScreen} />
       <BottomTab.Screen name="Notes" component={ForumScreen} />
       <BottomTab.Screen name="Profile" component={ProfileScreen} />

@@ -9,7 +9,7 @@ const ChangePass = ({ navigation }) => {
   const [pwd2, setPwd2] = useState("");
   const [ChangePass, result, error] = useChangePass();
   if (result.length > 0) {
-    navigation.replace("Home");
+    navigation.replace("Main");
   }
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>

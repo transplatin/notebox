@@ -1,26 +1,31 @@
 import React from "react";
-import { StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import BottomTabNav from "./navigation/BottomTabNav";
 import RegisterStackNav from "./navigation/RegisterStackNav";
-import style from "./constant/Style";
+import styles from "./constant/Style";
+import ReadBook from "./screens/ReadBook";
 const Stack = createStackNavigator();
 
 export default function App() {
-
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="Auth">
+      <Stack.Navigator initialRouteName="Main">
         <Stack.Screen
           options={{ headerShown: false }}
           name="Auth"
           component={RegisterStackNav}
         />
         <Stack.Screen
-          options={getOption("Home")}
-          name="Home"
+          options={getOption("Main")}
+          options={{ headerShown: false }}
+          name="Main"
           component={BottomTabNav}
+        />
+        <Stack.Screen
+          options={getOption("Read")}
+          name="Read"
+          component={ReadBook}
         />
       </Stack.Navigator>
     </NavigationContainer>
@@ -31,9 +36,11 @@ const getOption = (name) => {
   return {
     title: name,
     headerStyle: {
-      backgroundColor: style.baseColor,
+      backgroundColor: styles.baseColor,
     },
-    animationEnabled: false,
+    animationEnabled: true,
+    headerShown: true,
+    transition: "fadeIn",
     headerTitleAlign: "center",
     headerTintColor: "#fff",
     headerTitleStyle: {
@@ -43,11 +50,3 @@ const getOption = (name) => {
   };
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

@@ -9,7 +9,7 @@ const Login = ({ navigation }) => {
   const [password, setPassword] = useState("");
   const [Login, result, error] = LoginPost();
   if (result.length > 0) {
-    navigation.replace("Home");
+    navigation.replace("Main");
   }
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>
