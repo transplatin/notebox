@@ -25,6 +25,8 @@
     },
     "ios": {
       "supportsTablet": true,
+      "bundleIdentifier": "com.notebox.app",
+      "buildNumber": "1.0.0",
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-5315357128356077~5556035357" // sample id, replace with your own
       }
