@@ -8,8 +8,9 @@ const ChangePass = ({ navigation }) => {
   const [pwd1, setPwd1] = useState("");
   const [pwd2, setPwd2] = useState("");
   const [ChangePass, result, error] = useChangePass();
-  if (result.length > 0) {
-    navigation.replace("Main");
+
+  if (result.status=="success") {
+    navigation.goBack();
   }
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>

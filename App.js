@@ -5,12 +5,15 @@ import BottomTabNav from "./navigation/BottomTabNav";
 import RegisterStackNav from "./navigation/RegisterStackNav";
 import styles from "./constant/Style";
 import ReadBook from "./screens/ReadBook";
+import SaveMark from "./components/SaveMark";
+import FeedBack from "./screens/FeedBack";
+import RequestBook from "./screens/RequestBook";
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer style={styles.container}>
-      <Stack.Navigator initialRouteName="Main">
+      <Stack.Navigator initialRouteName="Auth">
         <Stack.Screen
           options={{ headerShown: false }}
           name="Auth"
@@ -23,23 +26,45 @@ export default function App() {
           component={BottomTabNav}
         />
         <Stack.Screen
-          options={getOption("Read")}
+          options={({ route }) => getOption(route.params)}
           name="Read"
           component={ReadBook}
+        />
+        <Stack.Screen
+          options={getOption("Feedback")}
+          options={{ headerShown: false }}
+          name="Feedback"
+          component={FeedBack}
+        />
+        <Stack.Screen
+          options={getOption("Request Book")}
+          options={{ headerShown: false }}
+          name="Request"
+          component={RequestBook}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-const getOption = (name) => {
+const getOption = (params) => {
   return {
-    title: name,
+    title: params.name,
     headerStyle: {
       backgroundColor: styles.baseColor,
     },
     animationEnabled: true,
     headerShown: true,
+    headerRight: () => (
+      <SaveMark
+        name={params.name}
+        url={params.url}
+        type={params.type}
+        bid={params.bid}
+        link={params.link}
+        descr={params.descr}
+      />
+    ),
     transition: "fadeIn",
     headerTitleAlign: "center",
     headerTintColor: "#fff",
@@ -49,4 +74,3 @@ const getOption = (name) => {
     },
   };
 };
-

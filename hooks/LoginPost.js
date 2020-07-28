@@ -6,12 +6,20 @@ const LoginPost = () => {
   const [error, setError] = useState(""); //Error if any
   const Login = async (username,password) => {
     try {
-      let result = await URL.get(`/users`);
-      
+      let params= new FormData();
+      params.append("login","ok");
+      params.append("username",username);
+      params.append("password",password);
+      let result = await URL({
+        method: 'post',
+        url: '/login.php',
+        data: params
+      });
       if (typeof result.data === "string") {
         setError(result.data);
       } else {
         setLoginResponse(result.data);
+        setError("");
       }
     } catch (e) {
       setError(e.message);

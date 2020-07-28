@@ -3,15 +3,25 @@ import { View, TouchableWithoutFeedback } from "react-native";
 import { Text, Input, Button } from "galio-framework";
 import styles from "../constant/Style";
 import useSignUp from "../hooks/useSignUp";
+import * as SecureStore from "expo-secure-store";
 
 const SignUp = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
+  const [beta, setBeta] = useState("");
   const [SignUp, result, error] = useSignUp();
   if (result.length > 0) {
-    navigation.replace("Main");
+    const detailStore = async () => {
+      try {
+        await SecureStore.setItemAsync("user", JSON.stringify(result[0]));
+        navigation.replace("Main");
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    detailStore();
   }
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>
@@ -48,6 +58,13 @@ const SignUp = ({ navigation }) => {
           placeholder="Password"
           secureTextEntry
         />
+        <Input
+          value={beta}
+          onChangeText={(e) => setBeta(e)}
+          style={styles.input}
+          maxLength={7}
+          placeholder="Beta Code"
+        />
         {error ? (
           <Text p color="red">
             {error}
@@ -55,7 +72,7 @@ const SignUp = ({ navigation }) => {
         ) : null}
         <Button
           onPress={() => {
-            if (verifyDetails(username, email, phone, password)) {
+            if (verifyDetails(username, email, phone, password, beta)) {
               SignUp(username, email, phone, password);
             }
           }}
@@ -84,7 +101,7 @@ const SignUp = ({ navigation }) => {
   );
 };
 
-const verifyDetails = (username, email, phone, password) => {
+const verifyDetails = (username, email, phone, password, beta) => {
   var usernameRegex = /^[a-zA-Z0-9]+$/;
   var emailRegex = /\S+@\S+\.\S+/;
   var phoneRegex = /^[0-9]{10}$/;
@@ -99,6 +116,9 @@ const verifyDetails = (username, email, phone, password) => {
     return false;
   } else if (!(password != "")) {
     alert("Please choose a password");
+    return false;
+  } else if (beta != "BETA100") {
+    alert("Sorry the beta code you entered is Invalid.");
     return false;
   }
   return true;

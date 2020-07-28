@@ -1,15 +1,42 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import { View, TouchableWithoutFeedback } from "react-native";
 import { Text, Input, Button } from "galio-framework";
 import styles from "../constant/Style";
 import LoginPost from "../hooks/LoginPost";
+import * as SecureStore from "expo-secure-store";
 
 const Login = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [Login, result, error] = LoginPost();
+  const getKeys = async () => {
+    try {
+      const credentials = await SecureStore.getItemAsync("user");
+      const user = JSON.parse(credentials);
+      if(user){
+       navigation.replace("Main")
+      }else{
+        console.log("maiin run")
+      }
+    } catch (e) {
+      console.error(e);
+      navigation.replace("Auth");
+    }
+  };
+  useEffect(() => {
+   getKeys();
+  }, [])
   if (result.length > 0) {
-    navigation.replace("Main");
+    const detailStore = async () => {
+      try {
+        await SecureStore.setItemAsync("user", JSON.stringify(result[0]));
+        navigation.replace("Main");
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    detailStore();
+    
   }
   return (
     <View style={[styles.container, { backgroundColor: styles.baseColor }]}>

@@ -1,4 +1,4 @@
 import axios from "axios";
 export default axios.create({
-  baseURL: "https://jsonplaceholder.typicode.com",
+  baseURL: "https://www.transplatin.co/api/notebox/v1",
 });

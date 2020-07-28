@@ -2,10 +2,10 @@ import { useState,useEffect } from "react";
 import URL from "./URL";
 import * as SecureStore from "expo-secure-store"
 
-const getBook = (type,cid) => {
+const getBookCategory = (type) => {
   const [response, setResponse] = useState([]); //To get an array object
   const [error, setError] = useState(""); //Error if any
-  const getBookList = async (customtype) => {
+  const loadCategory = async () => {
     try {
       const credentials = await SecureStore.getItemAsync('user');
       const user = JSON.parse(credentials);
@@ -15,10 +15,9 @@ const getBook = (type,cid) => {
       params.append("phone",user.phone);
       params.append("authtoken",user.authtoken);
       params.append("type",type);
-      params.append("cid",cid);
       let result = await URL({
         method: 'post',
-        url: '/getbook.php',
+        url: '/getcategory.php',
         data: params
       });
       if (typeof result.data === "string") {
@@ -32,9 +31,9 @@ const getBook = (type,cid) => {
     }
   };
   useEffect(() => {
-    getBookList();
+    loadCategory();
   }, [])
-  return [getBookList,response, error];
+  return [loadCategory,response, error];
 };
 
-export default getBook;
+export default getBookCategory;

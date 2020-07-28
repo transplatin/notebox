@@ -2,10 +2,10 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeStackNav from "./HomeStackNav";
 import ProfileScreen from "../screens/ProfileScreen";
-import ForumScreen from "../screens/ForumScreen";
-import BookScreen from "../screens/BookScreen";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import styles from "../constant/Style"
+import BookStackNav from "./BookStackNav";
+import NoteStackNav from "./NoteStackNav";
 
 const BottomTab = createBottomTabNavigator();
 
@@ -20,8 +20,8 @@ const BottomTabNav = ({ navigation }) => {
       initialRouteName="Home"
     >
       <BottomTab.Screen name="Home" icon="home" component={HomeStackNav} />
-      <BottomTab.Screen name="Books" component={BookScreen} />
-      <BottomTab.Screen name="Notes" component={ForumScreen} />
+      <BottomTab.Screen name="Books" component={BookStackNav} />
+      <BottomTab.Screen name="Notes" component={NoteStackNav} />
       <BottomTab.Screen name="Profile" component={ProfileScreen} />
     </BottomTab.Navigator>
   );

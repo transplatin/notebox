@@ -16,8 +16,18 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "android": {
+      "package": "com.notebox.app",
+      "versionCode": 1,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-5315357128356077~5556035357" // sample id, replace with your own
+      }
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-5315357128356077~5556035357" // sample id, replace with your own
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

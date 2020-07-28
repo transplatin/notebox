@@ -1,22 +1,16 @@
 import React from "react";
-import { FlatList } from "react-native";
+import {View } from "react-native";
 import Book from "./Book";
 
 const PreviewList = (props) => {
-  const arr = props.arr;
+  const arr = props.arr.slice(0,3);
+
   return (
-    <>
-      <FlatList
-        data={arr.slice(0,5)}
-        horizontal
-        initialNumToRender={1}
-        showsHorizontalScrollIndicator={false}
-        keyExtractor={(arr)=>arr.name}
-        renderItem={({ item }) => {
-          return <Book name={item.name} />;
-        }}
-      />
-      </>
+    <View style={{flexDirection: "row"}}>
+             { arr.map((item, key)=>(
+              <Book name={item.name} descr={item.descr} type={item.type} link={item.link} url={item.url} bid={item.bid} key={item.bid} />)
+         )}
+      </View>
   );
 };
 

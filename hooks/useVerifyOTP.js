@@ -11,6 +11,7 @@ const useVerifyOTP = () => {
         setError(result.data);
       } else {
         setResponse(result.data);
+        setError("");
       }
     } catch (e) {
       setError(e.message);

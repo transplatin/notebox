@@ -7,7 +7,7 @@ import getBookCategory from "../hooks/getBookCategory";
 import getBook from "../hooks/getBook";
 import CategoryName from "../components/CategoryName";
 const HomeScreen = () => {
-  const [type, setType] = useState({ name: "All Books", type: "All Books" });
+  const [type, setType] = useState({ name: "All Notes", type: "All Notes" });
   const [loadCategory, result, error] = getBookCategory();
   const [BookList, resultBL, errorBL] = getBook(type.type, 0);
   return (
@@ -20,7 +20,7 @@ const HomeScreen = () => {
         renderItem={({ item }) => {
           return (
             <CategoryName
-              typee="book"
+              typee="note"
               name={item.name}
               type={item.type}
               cid={item.cid}

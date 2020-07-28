@@ -3,11 +3,11 @@ import Section from "../components/Section";
 import { ScrollView } from "react-native";
 
 const HomeScreen = () => {
+
   return (
     <ScrollView>
-      <Section title="Popular" />
-      <Section title="Saved Books" />
-      <Section title="Saved Notes" />
+      <Section type="Saved Books" />
+      <Section type="Saved Notes" />
     </ScrollView>
   );
 };

@@ -1,23 +1,23 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "../screens/HomeScreen";
+import ProfileScreen from "../screens/ProfileScreen";
 import styles from "../constant/Style";
-import BookList from "../screens/BookList";
+import FeedBack from "../screens/FeedBack"
 
 const Stack = createStackNavigator();
 
-const HomeStackNav = ({ navigation }) => {
+const BookStackNav = ({ navigation }) => {
   return (
-    <Stack.Navigator headerMode="screen" initialRouteName="Home">
+    <Stack.Navigator headerMode="screen" initialRouteName="Profile">
       <Stack.Screen
-        options={getOption("Welcome")}
-        name="Home"
-        component={HomeScreen}
+        options={getOption("Your Profile")}
+        name="Profile"
+        component={ProfileScreen}
       />
-      <Stack.Screen
-        options={({route})=>getOption(route.params.name)}
-        name="BookList"
-        component={BookList}
+       <Stack.Screen
+        options={getOption("Feedback")}
+        name="Feedback"
+        component={FeedBack}
       />
     </Stack.Navigator>
   );
@@ -29,7 +29,7 @@ const getOption = (name) => {
     headerStyle: {
       backgroundColor: styles.baseColor,
     },
-    animationEnabled: true ,
+    animationEnabled: false,
     transition: "fadeIn",
     headerTitleAlign: "center",
     headerTintColor: "#fff",
@@ -40,4 +40,4 @@ const getOption = (name) => {
   };
 };
 
-export default HomeStackNav;
+export default BookStackNav;
